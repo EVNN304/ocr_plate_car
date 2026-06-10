@@ -1,0 +1,82 @@
+yolo:
+  obj_det:
+    model_path: "yolo26s.pt"
+    img_size: [640, 640]
+    conf: 0.55
+    device: 0
+    half: true
+    verbose: true
+
+  plate_det:
+    model_path: "/home/usr/Downloads/best.pt"
+    img_size: [640, 640]
+    conf: 0.55
+    device: 1
+    half: true
+    verbose: true
+
+# Источник видео
+video:
+  source: "/home/usr/Videos/VID_20260511_215618.mp4"
+  # Для RTSP: "rtsp://admin:pass@192.168.1.100:554/stream"
+  # Для USB камеры: 0
+
+# Очередь
+queue:
+  realtime: false
+
+# ROI зона
+roi:
+  enabled: true
+  coordinates: [50, 200, 950, 1100]
+
+
+frontend:
+  enabled: true
+  encoding: "base64"  # или "jpeg_stream", "protobuf"
+  quality: 85
+  send_raw_frame: false
+
+
+api:
+  endpoint: "ws://localhost:8080/detections"
+  heartbeat_interval: 5.0
+
+render:
+  time_delay: 1           # Задержка cv2.waitKey в Yolo_detection (мс)
+  render_timeout: 1       # Задержка cv2.waitKey в OCR-процессе (мс)
+
+
+
+tensorrt:
+  enabled: true              # Флаг: true = конвертировать, false = пропустить
+  format: "engine"            #Формат экспорта
+  device: 0                   # ID GPU
+  half: true                  # FP16
+  int8: false                 # INT8
+  dynamic: true               # Динамический батч
+  simplify: true              # Упрощение ONNX графа
+  workspace: 1.3              # Память GPU (GB)
+  imgsz: [640, 640]           # Размер входа (список или число)
+  batch: 32                   # Максимальный batch size
+  nms: true                  # Встроенный NMS (оставляем false для кастомного)
+  verbose: true              # Подробный лог конвертации
+
+
+
+
+# OCR
+ocr:
+  cpu_threads: 16
+  use_doc_orientation_classify: False
+  use_doc_unwarping: false
+  use_textline_orientation: false
+
+# Система
+system:
+  watchdog_interval: 2.0
+  max_restarts: 3
+  log_level: "INFO"
+
+
+

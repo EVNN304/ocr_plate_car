@@ -85,3 +85,36 @@
     "confidence": 0.77
   }
 }
+
+### 🔧 Пошаговая установка
+
+#### **Шаг 1: Клонирование репозитория**
+
+git clone https://github.com/EVNN304/ocr_plate_car.git
+
+#### **Шаг 2: Создание виртуального окружения**
+# Для Linux / macOS
+python3 -m venv venv
+source venv/bin/activate
+
+# Для Windows
+python -m venv venv
+venv\Scripts\activate
+
+#### **Шаг 3: Установка зависимостей**
+
+pip install --upgrade pip
+pip install -r requirements.txt
+
+#### **Шаг 4: Настройка конфигурации**
+
+Откройте файл config_pipeline2.yaml и проверьте параметры:
+
+
+#### **Шаг 5: Запуск пайплайна**
+python __main__.py
+
+
+
+
+
